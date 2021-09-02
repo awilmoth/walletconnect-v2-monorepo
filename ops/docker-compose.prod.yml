@@ -23,7 +23,7 @@ services:
 
   relay:
     environment:
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      LOG_LEVEL: ${LOG_LEVEL:-ERROR}
       RELAY_MODE: ${RELAY_MODE:-legacy}
     deploy:
       replicas: ${REPLICAS:-1}

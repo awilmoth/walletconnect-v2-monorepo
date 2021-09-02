@@ -29,9 +29,49 @@
 	reverse_proxy {args.0}:{env.UPSTREAM_PORT}
 }
 
-{env.DOMAIN} {
+a.bridge.walletconnect.org {
 	import certificates
 	import common relay.1
+}
+
+b.bridge.walletconnect.org {
+	import certificates
+	import common relay.2
+}
+
+c.bridge.walletconnect.org {
+	import certificates
+	import common relay.3
+}
+
+d.bridge.walletconnect.org {
+	import certificates
+	import common relay.4
+}
+
+e.bridge.walletconnect.org {
+	import certificates
+	import common relay.5
+}
+
+f.bridge.walletconnect.org {
+	import certificates
+	import common relay.6
+}
+
+g.bridge.walletconnect.org {
+	import certificates
+	import common relay.7
+}
+
+h.bridge.walletconnect.org {
+	import certificates
+	import common relay.8
+}
+
+i.bridge.walletconnect.org {
+	import certificates
+	import common relay.9
 }
 
 grafana.{env.DOMAIN} {
