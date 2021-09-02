@@ -16,6 +16,11 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - "node.role==manager"
 
   redis_exporter:
     image: oliver006/redis_exporter
@@ -73,6 +78,11 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus:/prometheus
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - "node.role==manager"
 
   grafana:
     image: grafana/grafana
@@ -80,3 +90,8 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - grafana:/var/lib/grafana
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - "node.role==manager"
