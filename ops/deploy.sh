@@ -3,8 +3,9 @@ source setup
 
 monitoring=${MONITORING:-true} # this makes a bash string, not a boolean
 port=${UPSTREAM_PORT:-5000}
+replicas=${REPLICAS:-9}
 export RELAY_IMAGE=$(cat ./build/build-img-relay-img)
-export CADDY_IMAGE=$(cat ./build/build-img-caddy-img)
+export CADDY_IMAGE=walletconnect/caddy:v2.4.3
 export WAKU_IMAGE=$(cat ./build/build-img-waku-img)
 
 run="docker stack deploy $PROJECT -c ops/docker-compose.yml -c ops/docker-compose.prod.yml "
@@ -19,4 +20,4 @@ if [[ $NODE_ENV == development ]]; then
 fi
 
 printf "\nDeploy command: $run\n\n"
-exec env UPSTREAM_PORT=$port RELAY_PORT=$port $run
+exec env REPLICAS=$replicas UPSTREAM_PORT=$port RELAY_PORT=$port $run
