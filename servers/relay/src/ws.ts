@@ -50,12 +50,12 @@ export class WebSocketService {
       }),
       newJsonRpcTotal: new client.Counter({
         name: `${this.server.context}_${this.context}_jsonrpc_messages_total`,
-        help: "Sum of opened ws connection",
+        help: "Total amount of jsonrpc payloads",
         registers: [this.server.metrics.register],
       }),
       newLegacyTotal: new client.Counter({
         name: `${this.server.context}_${this.context}_legacy_messages_total`,
-        help: "Sum of closed ws connections",
+        help: "Total amount of legacy payloads",
         registers: [this.server.metrics.register],
       }),
     };
