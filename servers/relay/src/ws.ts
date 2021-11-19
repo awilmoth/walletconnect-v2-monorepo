@@ -48,6 +48,16 @@ export class WebSocketService {
         help: "Total amount of messages",
         registers: [this.server.metrics.register],
       }),
+      newJsonRpcTotal: new client.Counter({
+        name: `${this.server.context}_${this.context}_jsonrpc_messages_total`,
+        help: "Sum of opened ws connection",
+        registers: [this.server.metrics.register],
+      }),
+      newLegacyTotal: new client.Counter({
+        name: `${this.server.context}_${this.context}_legacy_messages_total`,
+        help: "Sum of closed ws connections",
+        registers: [this.server.metrics.register],
+      }),
     };
 
     this.initialize();
@@ -108,12 +118,14 @@ export class WebSocketService {
           this.send(socketId, "Legacy messages are disabled");
           return;
         }
+        this.metrics.newLegacyTotal.inc();
         this.legacy.onRequest(socketId, payload);
       } else if (isJsonRpcPayload(payload)) {
         if (isJsonRpcDisabled(config.mode)) {
           this.send(socketId, "JSON-RPC messages are disabled");
           return;
         }
+        this.metrics.newJsonRpcTotal.inc();
         this.jsonrpc.onPayload(socketId, payload);
       } else {
         this.send(socketId, "Socket message unsupported");

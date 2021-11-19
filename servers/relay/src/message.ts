@@ -1,4 +1,5 @@
 import { Logger } from "pino";
+import client from "prom-client";
 import { RelayJsonRpc, RELAY_JSONRPC } from "@walletconnect/relay-api";
 import { generateChildLogger } from "@walletconnect/logger";
 
