@@ -5,7 +5,7 @@
 }:
 let
   wakunode = (import(fetchTarball {
-    url = "https://github.com/WalletConnect-Labs/nix-nim-waku/archive/${wakuVersionTag}.tar.gz";
+    url = "https://github.com/WalletConnect-Labs/nix-nim-waku/archive/refs/tags/${wakuVersionTag}.tar.gz";
     sha256 = nixNimRepoSha256;
   }) {});
   entry-script = with pkgs; writeScript "entry-script.sh" ''
